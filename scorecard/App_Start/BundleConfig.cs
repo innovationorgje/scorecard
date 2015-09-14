@@ -23,9 +23,16 @@ namespace scorecard
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/main").Include(
+                "~/Scripts/main.*",
+                "~/Scripts/plugins.*",
+                "~/Scripts/vendor.*"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                     "~/styles/main.*",
+                     "~/styles/vendor.*"));
         }
     }
 }

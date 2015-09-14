@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using scorecard.Data;
 
 namespace scorecard.Controllers
 {
@@ -10,7 +11,8 @@ namespace scorecard.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            RAGContext context = new RAGContext();
+            return View(context.Groups.ToList());
         }
 
         public ActionResult About()
