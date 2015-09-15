@@ -1,0 +1,238 @@
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 0;
+  padding-bottom:0;
+  font-size:16px;
+}
+
+.container {
+  max-width: 1170px !important;
+
+  a {
+    color:#1d1d1b;
+    text-decoration: underline;
+  }
+
+
+  .btn {
+      color:white;
+    }
+}
+
+$red : #e2322c;
+$orange : #f08234;
+$green : #4daf7c;
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.container,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+  background:#b60011;
+  color:white;
+  margin-bottom: 0px !important;
+
+  .login {
+    a {
+      font-size:1.6rem;
+      margin-top:15px;
+      text-decoration: underline;
+      float: right;
+      }
+    }
+
+  p {
+    margin-top:22px;
+  }
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    padding-bottom: 19px;
+  }
+}
+
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+#top-info {
+  background:#eef0f0;
+  padding:30px 30px;
+  border-bottom:1px solid #7d7d7d;
+
+  .box {
+    text-align: center;
+    color:white;
+    padding:5px 0;
+    margin-bottom: 5px;
+  }
+  .box.danger { background:$red;}
+  .box.warning { background: $orange;}
+  .box.success { background: $green;}
+}
+
+.rec_intro {
+  h2 {
+    margin-bottom: 30px;
+    margin-top:60px
+  }
+  .rec_square{
+    background: blue none repeat scroll 0 0;
+    color: white;
+    float: left;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    padding: 10px 0;
+    text-align: center;
+    width: 11%;
+
+  }
+  a.rec_square {
+    text-decoration: none;  
+  }
+  .danger { background:$red;
+    &:hover {background: darken($red, 20%);}
+  }
+  .warning { background:$orange;
+    &:hover {background: darken($orange, 20%);}
+  }
+  .success { background:$green;
+    &:hover {background: darken($green, 20%);}
+  }
+
+}
+
+.recommendations {
+  h2 {
+    margin-bottom: 30px;
+    margin-top:60px
+  }
+  .panel {
+    font-weight: bold;
+
+    p {
+      font-weight:normal;
+      span {
+        color:#b60011;
+        padding-left:10px;
+      }
+    }
+  }
+  .panel-danger > .panel-heading {
+    background-color: $red;
+    border-color: $red;
+    color: white;
+  }
+  .panel-warning > .panel-heading {
+    background-color: $orange;
+    border-color: $orange;
+    color: white;
+  }
+  .panel-success > .panel-heading {
+    background-color: $green;
+    border-color: $green;
+    color: white;
+  }
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 100%;
+    width:100%;
+  }
+
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+    padding-top:15px;
+    a {
+       float: left;
+      font-family: proxima-nova,sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      padding-bottom: 5px;
+      padding-right: 25px;
+      padding-top: 5px;
+      text-decoration: none;
+      color:white;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    margin-bottom: 30px;
+    a {
+       float: left;
+      font-family: proxima-nova,sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      padding-bottom: 5px;
+      padding-right: 15px;
+      padding-top: 15px;
+      text-decoration: none;
+      color:white;
+    }
+    .login {
+      a {
+        font-size:14px;
+        margin-top: 0;
+      }
+    }
+  }
+  #top-info {
+    padding:30px 0px;
+  }
+
+  h1 { font-size:20px;}
+  h2 { font-size:18px;}
+
+}
