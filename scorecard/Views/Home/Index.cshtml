@@ -37,7 +37,7 @@
                 {
                     foreach (var criteria in group.Criteria)
                     {
-                        <a class="rec_square @criteria.CssClass" href="#rec-@criteria.Reference">@criteria.Reference</a>
+                        <a class="rec_square @criteria.CssClass" href="#rec-@criteria.ID">@criteria.Reference</a>
                     }
 
                 }
@@ -46,20 +46,32 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-
             <div class="recommendations">
+                @foreach(var group in Model.Groups)
+                {
+                    <h2>@group.Title</h2>
+
+                    foreach (var criteria in group.Criteria)
+                    {
+                        <div class="panel panel-@criteria.CssClass" id="rec-@criteria.ID">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@criteria.Reference - @criteria.Title</h3>
+                            </div>
+                            <div class="panel-body">
+                                @criteria.Summary
+                                @foreach (var update in criteria.LatestUpdates)
+                                {
+                                    <hr>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit illum sapiente, facere, repellat odio sequi enim officia voluptatem illo itaque, voluptate distinctio fugit. In saepe, rerum excepturi eaque libero quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo amet provident libero repellat sapiente earum quo tempore eaque quas temporibus ipsam, obcaecati vero. Vero nisi numquam ratione quas, consectetur, consequatur?<span>John Smith (01/01/15)</span></p>                                    
+                                }
+                            </div>
+                        </div>
+
+                    }
+                }
+
                 <h2>Money</h2>
                 <!-- start recommendation panel -->
-                <div class="panel panel-warning" id="rec1">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Recommendation 1</h3>
-                    </div>
-                    <div class="panel-body">
-                        Government should ensure the operation of the Innovation Fund is appropriate to provide support at all relevant stages of development of an innovative idea, including considering whether some changes need to be made to make the funding more suitable for earlier stage ideas.
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit illum sapiente, facere, repellat odio sequi enim officia voluptatem illo itaque, voluptate distinctio fugit. In saepe, rerum excepturi eaque libero quibusdam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo amet provident libero repellat sapiente earum quo tempore eaque quas temporibus ipsam, obcaecati vero. Vero nisi numquam ratione quas, consectetur, consequatur?<span>John Smith (01/01/15)</span></p>
-                    </div>
-                </div>
                 <!-- end recommendation panel -->
                 <!-- start recommendation panel -->
                 <div class="panel panel-success" id="rec2">

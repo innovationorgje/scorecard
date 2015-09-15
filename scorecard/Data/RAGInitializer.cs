@@ -23,15 +23,15 @@ namespace scorecard.Data
 
             var criteria = new List<Criteria>
             {
-                new Criteria{Title="Criteria 1", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Red},
-                new Criteria{Title="Criteria 2", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Amber},
-                new Criteria{Title="Criteria 3", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Green},
-                new Criteria{Title="Criteria 4", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Red},
-                new Criteria{Title="Criteria 5", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Amber},
-                new Criteria{Title="Criteria 6", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Green},
-                new Criteria{Title="Criteria 7", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Red},
-                new Criteria{Title="Criteria 8", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Amber},
-                new Criteria{Title="Criteria 9", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Green}
+                new Criteria{Reference="1",Title="Criteria 1", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Red, Group=groups[0]},
+                new Criteria{Reference="2",Title="Criteria 2", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Amber, Group=groups[0]},
+                new Criteria{Reference="3",Title="Criteria 3", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Green, Group=groups[0]},
+                new Criteria{Reference="4",Title="Criteria 4", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Red, Group=groups[1]},
+                new Criteria{Reference="5",Title="Criteria 5", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Amber, Group=groups[1]},
+                new Criteria{Reference="6",Title="Criteria 6", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Green, Group=groups[1]},
+                new Criteria{Reference="7",Title="Criteria 7", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Red, Group=groups[2]},
+                new Criteria{Reference="8",Title="Criteria 8", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Amber, Group=groups[2]},
+                new Criteria{Reference="9",Title="Criteria 9", Summary="ABCDEFGHIJKLMNOPQRSTUVWXYZ", State=CriteriaState.Green, Group=groups[2]}
             };
 
             criteria.ForEach(c => context.Criteria.Add(c));
@@ -50,7 +50,10 @@ namespace scorecard.Data
 
             var statuses = new List<StatusUpdate>
             {
-                new StatusUpdate{Text="Test Update 1",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Red,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]}
+                new StatusUpdate{Text="Test Update 1",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Red,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
+                new StatusUpdate{Text="",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Amber,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
+                new StatusUpdate{Text="Test Update 2",StateFrom=CriteriaState.Amber,StateTo=CriteriaState.Amber,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
+                new StatusUpdate{Text="",StateFrom=CriteriaState.Amber,StateTo=CriteriaState.Red,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]}
             };
 
             statuses.ForEach(s => context.StatusUpdates.Add(s));

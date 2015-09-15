@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace scorecard.Models
@@ -20,6 +21,14 @@ namespace scorecard.Models
 
         public virtual Group Group { get; set; }
         public virtual ICollection<StatusUpdate> Updates { get; set; }
+
+        public IEnumerable<StatusUpdate> LatestUpdates
+        {
+            get
+            {
+                return this.Updates.OrderByDescending(u => u.Stamp);
+            }
+        }
 
         public string CssClass
         {
