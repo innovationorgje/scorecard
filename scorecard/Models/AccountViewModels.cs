@@ -10,12 +10,11 @@ namespace scorecard.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
 
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public string LinkedInToken { get; set; }
+        public string LinkedInProfile { get; set; }
     }
 
     public class ExternalLoginListViewModel

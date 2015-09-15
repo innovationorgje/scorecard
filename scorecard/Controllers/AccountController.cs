@@ -62,7 +62,7 @@ namespace scorecard.Controllers
                 return RedirectToLocal(returnUrl);
             }
 
-            return RedirectToAction("ExternalLogin", "Account", new { provider="LinkedIn", returnUrl="returnUrl"});
+            return RedirectToAction("ExternalLogin", "Account", new { provider="LinkedIn", returnUrl=returnUrl});
         }
 
         //
@@ -337,16 +337,32 @@ namespace scorecard.Controllers
             {
                 case SignInStatus.Success:
                     return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
                     // If the user does not have an account, then prompt the user to create an account
-                    ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+
+                    var identity = loginInfo.ExternalIdentity;
+                    string name = identity.Claims.FirstOrDefault(c => c.Type == "urn:linkedin:name").Value;
+                    string accessToken = identity.Claims.FirstOrDefault(c => c.Type == "urn:linkedin:accesstoken").Value;
+                    string url = identity.Claims.FirstOrDefault(c => c.Type == "urn:linkedin:url").Value;
+
+                    // Get the information about the user from the external login provider
+
+                    var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, FullName = name, LinkedInProfile = url, LinkedInToken = accessToken };
+
+                    var createResult = await UserManager.CreateAsync(user);
+                    if (createResult.Succeeded)
+                    {
+                        createResult = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+                        if (createResult.Succeeded)
+                        {
+                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
+
+                    return View("ExternalLoginFailure");
             }
         }
 

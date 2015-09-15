@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Security.Claims;
+using System.Web;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
 using Owin.Security.Providers.LinkedIn;
 using scorecard.Models;
@@ -65,12 +68,12 @@ namespace scorecard
             //    ClientSecret = ""
             //});
 
-           LinkedInAuthenticationOptions linkedin = new LinkedInAuthenticationOptions()
-            {
-                ClientId = "75y7vqp6ijymw8",
-                ClientSecret = "4QLJ28mma7OVvcoR",
-                CallbackPath = new PathString("/auth/linkedin"),
-            };
+            LinkedInAuthenticationOptions linkedin = new LinkedInAuthenticationOptions()
+             {
+                 ClientId = "75y7vqp6ijymw8",
+                 ClientSecret = "4QLJ28mma7OVvcoR",
+                 CallbackPath = new PathString("/auth/linkedin")
+             };
 
              app.UseLinkedInAuthentication(linkedin);
         }
