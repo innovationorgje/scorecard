@@ -49,6 +49,7 @@ namespace scorecard.Data
             var permitted = new List<PermittedUser>
             {
                 new PermittedUser{Email="matt.chatterley@gmail.com",Roles="Administrator"},
+                new PermittedUser{Email="robbie@beobserved.com",Roles="Administrator"},
                 new PermittedUser{Email="john@smith.com", Roles=string.Empty}
             };
 
