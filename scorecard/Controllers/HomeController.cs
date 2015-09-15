@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using scorecard.Data;
+using scorecard.Models;
 
 namespace scorecard.Controllers
 {
@@ -12,7 +13,11 @@ namespace scorecard.Controllers
         public ActionResult Index()
         {
             RAGContext context = new RAGContext();
-            return View(context.Groups.ToList());
+
+            HomeIndexViewModel model = new HomeIndexViewModel();
+            model.Groups = context.Groups.ToList();
+            
+            return View(model);
         }
 
         public ActionResult About()
