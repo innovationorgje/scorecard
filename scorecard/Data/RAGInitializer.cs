@@ -42,7 +42,7 @@ namespace scorecard.Data
                     
             var users = new List<ApplicationUser>
             {
-                new ApplicationUser{UserName="john@smith.com",PasswordHash=password,PhoneNumber="777888"}
+                new ApplicationUser{FirstName="John",LastName="Smith",UserName="john@smith.com",PasswordHash=password,PhoneNumber="777888"}
             };
 
             users.ForEach(u => context.Users.Add(u));

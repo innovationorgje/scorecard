@@ -270,16 +270,7 @@ namespace scorecard.Controllers
         {
             return View();
         }
-
-        //
-        // GET: /Account/ExternalLogin
-  /*      [HttpGet]
-        [AllowAnonymous]
-        public ActionResult ExternalLogin(string id)
-        {
-            return new ChallengeResult(id, Url.Action("ExternalLoginCallback", "Account"));
-        }
-    */    
+ 
         //
         // POST: /Account/ExternalLogin
         [HttpGet]
