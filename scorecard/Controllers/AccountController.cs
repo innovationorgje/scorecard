@@ -57,6 +57,11 @@ namespace scorecard.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if(User.Identity.IsAuthenticated)
+            {
+                return RedirectToLocal(returnUrl);
+            }
+
             return RedirectToAction("ExternalLogin", "Account", new { provider="LinkedIn", returnUrl="returnUrl"});
         }
 
