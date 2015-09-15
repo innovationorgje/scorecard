@@ -13,5 +13,13 @@ namespace scorecard.Models
 
         public virtual Criteria Criteria { get; set; }
         public virtual ApplicationUser User { get; set; }
+
+        public bool IsStateChange
+        {
+            get
+            {
+                return this.StateFrom != this.StateTo;
+            }
+        }
     }
 }
