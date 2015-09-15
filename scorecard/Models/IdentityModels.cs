@@ -12,6 +12,7 @@ namespace scorecard.Models
         public string FullName { get; set; }
         public string LinkedInToken { get; set; }
         public string LinkedInProfile { get; set; }
+        public virtual PermittedUser PermittedUser { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

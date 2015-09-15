@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using scorecard.Data;
 using scorecard.Models;
 
 namespace scorecard.Controllers
@@ -97,22 +98,43 @@ namespace scorecard.Controllers
                     // If the user does not have an account, then prompt the user to create an account
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
 
+                    // Get the information about the user from the external login provider
                     var identity = loginInfo.ExternalIdentity;
+                    string email = loginInfo.Email;
                     string name = identity.Claims.FirstOrDefault(c => c.Type == "urn:linkedin:name").Value;
                     string accessToken = identity.Claims.FirstOrDefault(c => c.Type == "urn:linkedin:accesstoken").Value;
                     string url = identity.Claims.FirstOrDefault(c => c.Type == "urn:linkedin:url").Value;
 
-                    // Get the information about the user from the external login provider
-                    var user = new ApplicationUser { UserName = loginInfo.Email, Email = loginInfo.Email, FullName = name, LinkedInProfile = url, LinkedInToken = accessToken };
+                    // check they are authorised
+                    RAGContext rag = new RAGContext();
+                    var permittedUsers = rag.PermittedUsers.Where(p => p.Email == email);
 
-                    var createResult = await UserManager.CreateAsync(user);
-                    if (createResult.Succeeded)
+                    if (permittedUsers != null && permittedUsers.Count() == 1)
                     {
-                        createResult = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+                        var permitted = permittedUsers.First();
+
+                        var user = new ApplicationUser { UserName = email, Email = email, FullName = name, LinkedInProfile = url, LinkedInToken = accessToken, PermittedUser=permitted };
+
+                        var createResult = await UserManager.CreateAsync(user);
                         if (createResult.Succeeded)
                         {
-                            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                            return RedirectToLocal(returnUrl);
+                            // set roles                            
+                            if(!string.IsNullOrEmpty(permitted.Roles))
+                            {
+                                string[] roles = permitted.Roles.Split(new char[] { ',' });
+
+                                foreach (string role in roles)
+                                {
+                                    await this.UserManager.AddToRoleAsync(user.Id, role);
+                                }
+                            }
+
+                            createResult = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+                            if (createResult.Succeeded)
+                            {
+                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                                return RedirectToLocal(returnUrl);
+                            }
                         }
                     }
 

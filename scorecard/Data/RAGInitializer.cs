@@ -46,12 +46,21 @@ namespace scorecard.Data
                 roleManager.Create(role);
             }
 
+            var permitted = new List<PermittedUser>
+            {
+                new PermittedUser{Email="matt.chatterley@gmail.com",Roles="Administrator"},
+                new PermittedUser{Email="john@smith.com", Roles=string.Empty}
+            };
+
+            permitted.ForEach(p => context.PermittedUsers.Add(p));
+            context.SaveChanges();
+
             var passwordHash = new PasswordHasher();
             string password = passwordHash.HashPassword("Password@123");
                     
             var users = new List<ApplicationUser>
             {
-                new ApplicationUser{FullName="John Smith",UserName="john@smith.com",PasswordHash=password,PhoneNumber="777888"}
+                new ApplicationUser{FullName="John Smith",UserName="john@smith.com",PasswordHash=password,PhoneNumber="777888",PermittedUser=permitted[1]}
             };
 
             users.ForEach(u => context.Users.Add(u));
