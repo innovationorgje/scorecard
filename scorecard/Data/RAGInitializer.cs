@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using scorecard.Models;
 
 namespace scorecard.Data
@@ -36,6 +37,14 @@ namespace scorecard.Data
 
             criteria.ForEach(c => context.Criteria.Add(c));
             context.SaveChanges();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (!roleManager.RoleExists("Administrator"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Administrator";
+                roleManager.Create(role);
+            }
 
             var passwordHash = new PasswordHasher();
             string password = passwordHash.HashPassword("Password@123");
