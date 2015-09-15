@@ -57,8 +57,7 @@ namespace scorecard.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return RedirectToAction("ExternalLogin", "Account", new { provider="LinkedIn", returnUrl="returnUrl"});
         }
 
         //
