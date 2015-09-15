@@ -272,10 +272,18 @@ namespace scorecard.Controllers
         }
 
         //
-        // POST: /Account/ExternalLogin
-        [HttpPost]
+        // GET: /Account/ExternalLogin
+  /*      [HttpGet]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
+        public ActionResult ExternalLogin(string id)
+        {
+            return new ChallengeResult(id, Url.Action("ExternalLoginCallback", "Account"));
+        }
+    */    
+        //
+        // POST: /Account/ExternalLogin
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider

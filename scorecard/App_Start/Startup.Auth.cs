@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using Owin.Security.Providers.LinkedIn;
 using scorecard.Models;
 
 namespace scorecard
@@ -63,6 +64,15 @@ namespace scorecard
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+           LinkedInAuthenticationOptions linkedin = new LinkedInAuthenticationOptions()
+            {
+                ClientId = "75y7vqp6ijymw8",
+                ClientSecret = "4QLJ28mma7OVvcoR",
+                CallbackPath = new PathString("/auth/linkedin"),
+            };
+
+             app.UseLinkedInAuthentication(linkedin);
         }
     }
 }
