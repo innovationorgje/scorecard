@@ -13,11 +13,36 @@ namespace scorecard.Models
     public class Criteria
     {
         public int ID { get; set; }
+        public string Reference { get; set; }
         public string Title { get; set; }
         public string Summary { get; set; }
         public CriteriaState State { get; set; }
 
         public virtual Group Group { get; set; }
         public virtual ICollection<StatusUpdate> Updates { get; set; }
+
+        public string CssClass
+        {
+            get
+            {
+                string css = string.Empty;
+
+                switch(this.State)
+                {
+                    case CriteriaState.Red:
+                        css = "danger";
+                        break;
+                    case CriteriaState.Amber:
+                        css = "warning";
+                        break;
+                    case CriteriaState.Green:
+                        css = "success";
+                        break;
+                }
+
+                return css;
+            }
+        }
+
     }
 }
