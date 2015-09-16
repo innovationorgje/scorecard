@@ -1,22 +1,27 @@
 ﻿@using Microsoft.AspNet.Identity
-<div class="col-sm-3 login">
-    @if (Request.IsAuthenticated)
-    {
-
-        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+<div class="col-sm-6 login">
+    <div class="btn-group pull-right" role="group">
+        @if (Request.IsAuthenticated)
         {
-            @Html.AntiForgeryToken()
 
-            <span>
-                @User.Identity.GetUserName()
-            </span>
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <button class="btn btn-primary btn-md" type="button">
+                    <span class="glyphicon glyphicon-user"></span>@User.Identity.GetUserName()
+                </button>
+                <button class="btn btn-primary btn-md" type="submit">Log Out</button>
+            }
         }
-    }
-    else
-    {
-        @Html.ActionLink("Login", "Login", "Account")
-    }
-
+        else
+        {
+            using(Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <button class="btn btn-primary btn-md pull-right" type="submit"><span class="glyphicon glyphicon-user"></span>Sign In</button>
+            }
+        }
+    </div>
     @Html.ActionLink("Status", "Index", "Home", null, null, "status", null, null)
 </div>
