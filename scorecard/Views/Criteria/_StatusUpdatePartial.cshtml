@@ -1,0 +1,14 @@
+﻿@using scorecard.Models
+@model StatusUpdateViewModel
+<hr />
+<p>
+    @if (Model.Update.IsStateChange)
+    {
+        @Html.Raw(string.Format("State changed from <span>{0}</span> to <span>{1}</span>", Model.Update.StateFrom.ToString(), Model.Update.StateTo.ToString()));
+    }
+    else
+    {
+        @Model.Update.Text
+    }
+    <span><a href="@Model.Update.User.LinkedInProfile" target="_blank">@Model.Update.User.FullName</a>, @Model.Update.Stamp.ToString("dd/MM/yyyy HH:mm:ss")</span>
+</p>

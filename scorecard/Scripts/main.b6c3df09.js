@@ -1,6 +1,7 @@
-$(document).ready(function()
+$(document).ready(function ()
 {
     $('.panel-footer-update').hide();
+
     $('.update-criteria').click(function ()
     {
         $('.panel-footer').show();
@@ -11,9 +12,12 @@ $(document).ready(function()
         $(id + ' .panel-footer').hide();
 
         // set value of controls
-        $('.panel-footer-update input[type=hidden]').val(baseId);
+        $('.panel-footer-update #UpdateId').val(baseId);
         $('.panel-footer-update textarea').val('');
         $('.panel-footer-update select').val($(id + ' .current-status').val());
+
+        // set ajax update element
+        $('.panel-footer-update form').attr('data-ajax-update', '#panel-body-' + baseId + ' p:last-child');
 
         // show update panel
         var updatePanel = $('.panel-footer-update');
@@ -23,25 +27,30 @@ $(document).ready(function()
         $(updatePanel).show();
     });
 
-    $('.submit-update').click(function ()
+    $('.cancel-update').click(function ()
     {
-        var id = $('.panel-footer-update input[type=hidden]');
-
-        $.ajax({
-            type: "POST",
-            url: "/Criteria/UpdateStatus/" + id,
-            data: $('.panel-footer-update form').serialize(),
-            datatype: "html",
-            success: function (update)
-            {
-                $('#rec-' +  id + ' .panel-body').append(update);
-            }
-        });
+        resetUpdateStatusControls();
     });
+});
 
-    $('.cancel-update').click(function()
-    {
-        $('.panel-footer').show();
-        $('.panel-footer-update').hide();
-    });
-})
+function updateStatusSuccess(arg)
+{
+    console.debug(arg);
+    resetUpdateStatusControls();
+}
+
+function resetUpdateStatusControls()
+{
+    $('.panel-footer-update #UpdateId').val('');
+    $('.panel-footer-update textarea').val('');
+    $('.panel-footer-update select').val(0);
+
+    $('.panel-footer').show();
+    $('.panel-footer-update').hide();
+}
+
+function showAjaxFormError(error)
+{
+    console.debug(error);
+}
+
