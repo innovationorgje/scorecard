@@ -49,6 +49,8 @@ namespace scorecard.Controllers
                                 state.User = currentUser;// TODO: This isn't saving for some reason
                                 state.Stamp = DateTime.Now;
                                 criteria.Updates.Add(state);
+
+                                criteria.State = model.UpdateStatus;
                             }
 
                             // save the update text
