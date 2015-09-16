@@ -26,7 +26,7 @@ namespace scorecard.Models
         {
             get
             {
-                return this.Updates.OrderByDescending(u => u.Stamp);
+                return this.Updates.OrderBy(u => u.Stamp);
             }
         }
 
