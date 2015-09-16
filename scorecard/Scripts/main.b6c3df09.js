@@ -25,6 +25,9 @@ $(document).ready(function ()
 
         $(id).append(updatePanel);
         $(updatePanel).show();
+
+        // remove update elements
+        $('input.criteria-state').remove();
     });
 
     $('.cancel-update').click(function ()
@@ -36,6 +39,16 @@ $(document).ready(function ()
 function updateStatusSuccess(arg)
 {
     console.debug(arg);
+    $('.criteria-state').each(function()
+    {
+        console.debug($(this));
+        var id = $(this).attr('id').replace('criteria-state-', '');
+        $('#rec-' + id).removeClass('panel-danger panel-warning panel-success');
+        $('#rec-' + id).addClass('panel-' + $(this).val());
+    });
+
+    $('.criteria-state').remove();
+
     resetUpdateStatusControls();
 }
 

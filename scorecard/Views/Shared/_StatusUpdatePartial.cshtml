@@ -1,6 +1,7 @@
 ﻿@using scorecard.Models
 @model StatusUpdateViewModel
 <hr />
+<input type="hidden" id="criteria-state-@Model.Update.Criteria.ID" class="criteria-state" value="@Model.Update.CssClass" />
 <p>
     @if (Model.Update.IsStateChange)
     {

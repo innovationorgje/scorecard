@@ -21,5 +21,13 @@ namespace scorecard.Models
                 return this.StateFrom != this.StateTo;
             }
         }
+
+        public string CssClass
+        {
+            get
+            {
+                return Criteria.ToCssClass(this.StateTo);
+            }
+        }
     }
 }

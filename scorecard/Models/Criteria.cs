@@ -34,24 +34,28 @@ namespace scorecard.Models
         {
             get
             {
-                string css = string.Empty;
-
-                switch(this.State)
-                {
-                    case CriteriaState.Red:
-                        css = "danger";
-                        break;
-                    case CriteriaState.Amber:
-                        css = "warning";
-                        break;
-                    case CriteriaState.Green:
-                        css = "success";
-                        break;
-                }
-
-                return css;
+                return Criteria.ToCssClass(this.State);
             }
         }
 
+        public static string ToCssClass(CriteriaState state)
+        {
+            string css = string.Empty;
+
+            switch (state)
+            {
+                case CriteriaState.Red:
+                    css = "danger";
+                    break;
+                case CriteriaState.Amber:
+                    css = "warning";
+                    break;
+                case CriteriaState.Green:
+                    css = "success";
+                    break;
+            }
+
+            return css;
+        }
     }
 }
