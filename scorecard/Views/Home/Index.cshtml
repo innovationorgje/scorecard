@@ -66,6 +66,7 @@
                                     StatusUpdateViewModel m = new StatusUpdateViewModel(update);
                                     @Html.Partial("_StatusUpdatePartial", m);
                                 }
+                                <div id="panel-placeholder-@criteria.ID"></div>
                             </div>
                             @if(User.Identity.IsAuthenticated)
                             {
@@ -87,7 +88,7 @@
     <div class="panel-footer panel-footer-update">
     @using(Ajax.BeginForm("UpdateStatus", "Criteria", new AjaxOptions 
         { 
-            InsertionMode = InsertionMode.InsertAfter, 
+            InsertionMode = InsertionMode.InsertBefore, 
             UpdateTargetId = "DYNAMIC",
             OnSuccess = "updateStatusSuccess",
             OnFailure = "showAjaxFormError"

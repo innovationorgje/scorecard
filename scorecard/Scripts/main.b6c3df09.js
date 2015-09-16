@@ -17,7 +17,7 @@ $(document).ready(function ()
         $('.panel-footer-update select').val($(id + ' .current-status').val());
 
         // set ajax update element
-        $('.panel-footer-update form').attr('data-ajax-update', '#panel-body-' + baseId + ' p:last-child');
+        $('.panel-footer-update form').attr('data-ajax-update', '#panel-placeholder-' + baseId);
 
         // show update panel
         var updatePanel = $('.panel-footer-update');
@@ -38,10 +38,8 @@ $(document).ready(function ()
 
 function updateStatusSuccess(arg)
 {
-    console.debug(arg);
     $('.criteria-state').each(function()
     {
-        console.debug($(this));
         var id = $(this).attr('id').replace('criteria-state-', '');
         $('#rec-' + id).removeClass('panel-danger panel-warning panel-success');
         $('#rec-' + id).addClass('panel-' + $(this).val());
