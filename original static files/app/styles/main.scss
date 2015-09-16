@@ -29,12 +29,22 @@ body {
 
   .btn {
       color:white;
+      span {
+        margin-right:10px;
+      }
     }
+  .btn.btn-default {
+    color:#337ab7;
+  }
 }
 
 $red : #e2322c;
 $orange : #f08234;
 $green : #4daf7c;
+
+.red {color:$red;}
+.orange {color:$orange;}
+.green {color:$green;}
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -45,6 +55,7 @@ $green : #4daf7c;
   padding-right: 15px;
 }
 
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -53,6 +64,14 @@ $green : #4daf7c;
   margin-bottom: 0px !important;
 
   .login {
+    .btn {
+      margin-top:7px;
+      }
+    .btn.btn-linkedin {
+      background-color: #007bb6;
+      border-color: rgba(0, 0, 0, 0.2);
+      color: #fff;
+    }
     a {
       font-size:1.6rem;
       margin-top:15px;
@@ -141,12 +160,25 @@ $green : #4daf7c;
   .panel {
     font-weight: bold;
 
+    .panel-title {
+      display:inline;
+    }
+
     p {
       font-weight:normal;
       span {
         color:#b60011;
         padding-left:10px;
       }
+    }
+    .update {
+      text-align:right;
+    }
+    label {
+      margin-top:5px;
+      margin-bottom: 10px;
+      font-weight:normal;
+      font-size:16px;
     }
   }
   .panel-danger > .panel-heading {
