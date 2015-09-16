@@ -63,18 +63,8 @@
                                 @criteria.Summary
                                 @foreach (var update in criteria.LatestUpdates)
                                 {
-                                    <hr />
-                                    <p>
-                                        @if (update.IsStateChange)
-                                        {
-                                            @Html.Raw(string.Format("State changed from <span>{0}</span> to <span>{1}</span>", update.StateFrom.ToString(), update.StateTo.ToString()));
-                                        }
-                                        else
-                                        {
-                                            @update.Text
-                                        }
-                                        <span><a href="@update.User.LinkedInProfile" target="_blank">@update.User.FullName</a>, @update.Stamp.ToString("dd/MM/yyyy HH:mm:ss")</span>
-                                    </p>
+                                    StatusUpdateViewModel m = new StatusUpdateViewModel(update);
+                                    @Html.Partial("_StatusUpdatePartial", m);
                                 }
                             </div>
                             @if(User.Identity.IsAuthenticated)

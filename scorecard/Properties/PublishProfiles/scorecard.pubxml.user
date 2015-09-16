@@ -67,7 +67,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/15/2015 13:19:17</publishTime>
     </File>
     <File Include="bin/scorecard.dll">
-      <publishTime>09/15/2015 16:48:34</publishTime>
+      <publishTime>09/16/2015 17:12:04</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>09/14/2015 15:21:19</publishTime>
@@ -130,10 +130,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 16:11:37</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>09/15/2015 13:19:18</publishTime>
+      <publishTime>09/16/2015 15:28:01</publishTime>
     </File>
     <File Include="robots.txt">
-      <publishTime>12/09/2015 15:53:59</publishTime>
+      <publishTime>09/12/2015 15:53:59</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>09/14/2015 15:21:14</publishTime>
@@ -150,6 +150,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery-1.10.2.min.map">
       <publishTime>09/14/2015 15:21:15</publishTime>
     </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>09/16/2015 15:28:01</publishTime>
+    </File>
+    <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>09/16/2015 15:28:00</publishTime>
+    </File>
     <File Include="Scripts/jquery.validate.js">
       <publishTime>09/14/2015 15:21:24</publishTime>
     </File>
@@ -163,13 +169,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 15:21:24</publishTime>
     </File>
     <File Include="Scripts/main.b6c3df09.js">
-      <publishTime>09/14/2015 16:30:29</publishTime>
+      <publishTime>09/16/2015 17:08:41</publishTime>
     </File>
     <File Include="Scripts/modernizr-2.6.2.js">
       <publishTime>09/14/2015 15:21:21</publishTime>
     </File>
     <File Include="Scripts/plugins.19a1d77b.js">
-      <publishTime>09/14/2015 16:30:29</publishTime>
+      <publishTime>09/16/2015 09:21:56</publishTime>
     </File>
     <File Include="Scripts/respond.js">
       <publishTime>09/14/2015 15:21:23</publishTime>
@@ -178,28 +184,37 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 15:21:23</publishTime>
     </File>
     <File Include="Scripts/vendor.88694efe.js">
-      <publishTime>09/14/2015 16:30:29</publishTime>
+      <publishTime>09/16/2015 09:21:57</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>09/14/2015 16:32:36</publishTime>
+      <publishTime>09/16/2015 15:28:01</publishTime>
     </File>
     <File Include="styles/main.9045c398.css">
       <publishTime>09/14/2015 16:30:30</publishTime>
     </File>
+    <File Include="styles/main.a96e438f.css">
+      <publishTime>09/16/2015 09:17:39</publishTime>
+    </File>
     <File Include="styles/vendor.d41d8cd9.css">
-      <publishTime>09/14/2015 16:30:30</publishTime>
+      <publishTime>09/16/2015 09:17:39</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginFailure.cshtml">
       <publishTime>09/15/2015 15:43:51</publishTime>
     </File>
+    <File Include="Views/Criteria/_StatusUpdateFailedPartial.cshtml">
+      <publishTime>09/16/2015 17:01:32</publishTime>
+    </File>
+    <File Include="Views/Criteria/_StatusUpdatePartial.cshtml">
+      <publishTime>09/16/2015 17:01:42</publishTime>
+    </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/15/2015 15:20:27</publishTime>
+      <publishTime>09/16/2015 17:08:38</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/15/2015 14:40:55</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/15/2015 13:24:39</publishTime>
+      <publishTime>09/16/2015 15:33:36</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/15/2015 14:38:31</publishTime>
@@ -211,7 +226,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 15:21:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/15/2015 16:33:10</publishTime>
+      <publishTime>09/16/2015 17:12:05</publishTime>
     </File>
   </ItemGroup>
 </Project>
