@@ -1,4 +1,5 @@
 ﻿@using scorecard.Models
+@model HomeIndexViewModel
 @{
     ViewBag.Title = "Jersey Innovation Review Status";
 }
@@ -54,6 +55,7 @@
                     foreach (var criteria in group.Criteria)
                     {
                         <div class="panel panel-@criteria.CssClass" id="rec-@criteria.ID">
+                            <input type="hidden" class="current-status" value="@Convert.ToInt32(criteria.State)" />
                             <div class="panel-heading">
                                 <h3 class="panel-title">@criteria.Reference - @criteria.Title</h3>
                             </div>
@@ -63,7 +65,7 @@
                                 {
                                     <hr />
                                     <p>
-                                        @if(update.IsStateChange)
+                                        @if (update.IsStateChange)
                                         {
                                             @Html.Raw(string.Format("State changed from <span>{0}</span> to <span>{1}</span>", update.StateFrom.ToString(), update.StateTo.ToString()));
                                         }
@@ -75,10 +77,44 @@
                                     </p>
                                 }
                             </div>
+                            <div class="panel-footer">
+                                <div class="update">
+                                    <button id="upd-@criteria.ID" class="btn btn-primary btn-md update-criteria" type="button">Update</button>
+                                </div>
+                            </div>
                         </div>
                     }
                 }
             </div>
         </div>
+    </div>
+</div>
+<div class="panel-footer panel-footer-update">
+    @using (Html.BeginForm("UpdateStatus", "Criteria", null, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.UpdateId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.UpdateText, new { @class = "col-md-2 control-label" })
+        @Html.TextAreaFor(m => m.UpdateText, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UpdateText, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        <div class="col-xs-2 col-md-1">
+            @Html.LabelFor(m => m.UpdateStatus, new { @class = "col-md-2 control-label" })
+        </div>
+        <div class="col-xs-6 col-sm-4 col-md-3">
+            @Html.EnumDropDownListFor(m => m.UpdateStatus, new { @class = "form-control" })
+        </div>
+    </div>
+    }
+    <div class="col-sm-4 col-xs-12">
+    </div>
+    <div class="update">
+        <button class="btn btn-primary btn-md submit-update" type="button"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Submit</button>
+        <button class="btn btn-default btn-md cancel-update" type="button">Cancel</button>
     </div>
 </div>

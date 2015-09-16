@@ -6,9 +6,9 @@ namespace scorecard.Models
 {
     public enum CriteriaState
     {
-        Red = 1,
-        Amber = 2,
-        Green = 3
+        Red = 0,
+        Amber = 1,
+        Green = 2
     }
 
     public class Criteria

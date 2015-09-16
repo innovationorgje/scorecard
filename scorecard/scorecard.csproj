@@ -222,7 +222,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\vendor.88694efe.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="styles\main.9045c398.css" />
+    <Content Include="styles\main.a96e438f.css" />
     <Content Include="styles\vendor.d41d8cd9.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
