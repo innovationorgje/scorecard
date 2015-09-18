@@ -67,7 +67,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/15/2015 13:19:17</publishTime>
     </File>
     <File Include="bin/scorecard.dll">
-      <publishTime>09/16/2015 18:20:17</publishTime>
+      <publishTime>09/18/2015 08:34:37</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>09/14/2015 15:21:19</publishTime>
@@ -193,10 +193,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 16:30:30</publishTime>
     </File>
     <File Include="styles/main.a96e438f.css">
-      <publishTime>09/16/2015 09:17:39</publishTime>
+      <publishTime>09/18/2015 08:32:21</publishTime>
     </File>
     <File Include="styles/vendor.d41d8cd9.css">
-      <publishTime>09/16/2015 09:17:39</publishTime>
+      <publishTime>09/16/2015 21:19:49</publishTime>
     </File>
     <File Include="Views/Account/ExternalLoginFailure.cshtml">
       <publishTime>09/15/2015 15:43:51</publishTime>
@@ -208,13 +208,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/16/2015 17:01:42</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/16/2015 20:25:44</publishTime>
+      <publishTime>09/18/2015 08:32:48</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/15/2015 14:40:55</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/16/2015 20:33:41</publishTime>
+      <publishTime>09/18/2015 08:57:37</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>09/16/2015 20:39:45</publishTime>
