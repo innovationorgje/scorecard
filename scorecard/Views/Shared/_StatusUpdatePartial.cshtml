@@ -1,15 +1,18 @@
 ﻿@using scorecard.Models
 @model StatusUpdateViewModel
-<hr />
-<input type="hidden" id="criteria-state-@Model.Update.Criteria.ID" class="criteria-state" value="@Model.Update.CssClass" />
-<p>
-    @if (Model.Update.IsStateChange)
-    {
-        @Html.Raw(string.Format("State changed from <span>{0}</span> to <span>{1}</span>", Model.Update.StateFrom.ToString(), Model.Update.StateTo.ToString()));
-    }
-    else
-    {
-        @Model.Update.Text
-    }
-    <span><a href="@Model.Update.User.LinkedInProfile" target="_blank">@Model.Update.User.FullName</a>, @Model.Update.Stamp.ToString("dd/MM/yyyy HH:mm:ss")</span>
-</p>
+@foreach(StatusUpdate update in Model.Updates)
+{
+    <hr />
+    <input type="hidden" id="criteria-state-@update.Criteria.ID" class="criteria-state" value="@update.CssClass" />
+    <p>
+        @if (update.IsStateChange)
+        {
+            @Html.Raw(string.Format("State changed from <span>{0}</span> to <span>{1}</span>", update.StateFrom.ToString(), update.StateTo.ToString()));
+        }
+        else
+        {
+            @update.Text
+        }
+        <span><a href="@update.User.LinkedInProfile" target="_blank">@update.User.FullName</a>, @update.Stamp.ToString("dd/MM/yyyy HH:mm:ss")</span>
+    </p>
+}

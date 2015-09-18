@@ -61,11 +61,10 @@
                             </div>
                             <div id="panel-body-@criteria.ID" class="panel-body">
                                 @criteria.Summary
-                                @foreach (var update in criteria.LatestUpdates)
-                                {
-                                    StatusUpdateViewModel m = new StatusUpdateViewModel(update);
-                                    @Html.Partial("_StatusUpdatePartial", m);
+                                @{
+                        StatusUpdateViewModel m = new StatusUpdateViewModel(criteria.LatestUpdates);
                                 }
+                                @Html.Partial("_StatusUpdatePartial", m)
                                 <div id="panel-placeholder-@criteria.ID"></div>
                             </div>
                             @if(User.Identity.IsAuthenticated)

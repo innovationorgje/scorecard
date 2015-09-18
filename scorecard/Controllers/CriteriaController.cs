@@ -36,6 +36,8 @@ namespace scorecard.Controllers
 
                     if (criteria != null)
                     {
+                        List<StatusUpdate> updates = new List<StatusUpdate>();
+
                         try
                         {
                             // if we have text and a state change, save both
@@ -51,6 +53,8 @@ namespace scorecard.Controllers
                                 criteria.Updates.Add(state);
 
                                 criteria.State = model.UpdateStatus;
+
+                                updates.Add(state);
                             }
 
                             // save the update text
@@ -63,10 +67,12 @@ namespace scorecard.Controllers
                             update.Stamp = DateTime.Now;
                             criteria.Updates.Add(update);
 
+                            updates.Add(update);
+
                             context.SaveChanges();
 
                             // return view
-                            StatusUpdateViewModel partialModel = new StatusUpdateViewModel(update);
+                            StatusUpdateViewModel partialModel = new StatusUpdateViewModel(updates);
                             return PartialView("_StatusUpdatePartial", partialModel);
                         }
                         catch(Exception ex)

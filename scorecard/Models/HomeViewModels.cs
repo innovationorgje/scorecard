@@ -25,11 +25,11 @@ namespace scorecard.Models
 
     public class StatusUpdateViewModel
     {
-        public StatusUpdate Update { get; set; }
+        public IEnumerable<StatusUpdate> Updates { get; set; }
 
-        public StatusUpdateViewModel(StatusUpdate update)
+        public StatusUpdateViewModel(IEnumerable<StatusUpdate> updates)
         {
-            this.Update = update;
+            this.Updates = updates;
         }
     }
 
