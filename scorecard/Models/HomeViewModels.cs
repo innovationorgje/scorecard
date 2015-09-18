@@ -16,7 +16,7 @@ namespace scorecard.Models
         [Display(Name = "Update Message")]
         public string UpdateText { get; set; }
 
-        [Display(Name = "Update Status")]
+        [Display(Name = "Status")]
         public CriteriaState UpdateStatus { get; set; }
 
         [Required]

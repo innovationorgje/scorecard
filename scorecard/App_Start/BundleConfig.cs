@@ -32,8 +32,8 @@ namespace scorecard
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                     "~/styles/main.*",
-                     "~/styles/vendor.*"));
+                     "~/styles/main.a96e438f*",
+                     "~/styles/vendor.d41d8cd9*"));
         }
     }
 }
