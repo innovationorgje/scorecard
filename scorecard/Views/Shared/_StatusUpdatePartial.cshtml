@@ -7,7 +7,7 @@
     <p>
         @if (update.IsStateChange)
         {
-            @Html.Raw(string.Format("State changed from <span>{0}</span> to <span>{1}</span>", update.StateFrom.ToString(), update.StateTo.ToString()));
+            @Html.Raw(string.Format("State changed from <span class=\"update update-{2}\">{0}</span> to <span class=\"update update-{3}\">{1}</span>", update.StateFrom.ToString(), update.StateTo.ToString(), update.StateFrom.ToString().ToLower(), update.StateTo.ToString().ToLower()));
         }
         else
         {

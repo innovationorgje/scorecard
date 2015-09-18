@@ -9,3 +9,30 @@ textarea.form-control {
 	min-width: 100%;
     height: 150px;
 }
+
+.recommendations .panel p span.update
+{
+    padding: 0;
+    text-align: left;
+}
+
+.recommendations .panel p span.update-red
+{
+    color: #e2322c;
+}
+
+.recommendations .panel p span.update-amber
+{
+    color: #f08234;
+}
+
+.recommendations .panel p span.update-green
+{
+    color: #4daf7c;
+}
+
+.recommendations .panel p.failed
+{
+    font-weight: bold;
+    color: red;
+}
