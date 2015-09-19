@@ -1,8 +1,27 @@
-﻿@{
+﻿@using scorecard.Models
+@model ExternalLoginFailureViewModel
+@{
     ViewBag.Title = "Login Failure";
 }
 
-<hgroup>
-    <h2>@ViewBag.Title.</h2>
-    <h3 class="text-danger">Unsuccessful login with service.</h3>
-</hgroup>
+<div id="top-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>@ViewBag.Title.</h2>
+                <h3 class="text-danger">Unsuccessful login with service.</h3>
+                <p>
+                    Either something went wrong, or you haven't been pre-authorised to access this website.
+                </p>
+                <p>
+                    @using (Html.BeginForm("Apply", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(m => Model.EmailAddress)
+                        <button class="btn btn-primary btn-md" type="submit"><span class="glyphicon glyphicon-user-add"></span>Request Access</button>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

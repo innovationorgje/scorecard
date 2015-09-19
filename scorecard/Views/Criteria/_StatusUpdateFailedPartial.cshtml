@@ -1,0 +1,16 @@
+﻿@using scorecard.Models;
+@model StatusUpdateViewFailedModel
+<hr />
+<p class="failed">
+    Sorry, your update failed. This shouldn't really happen. Ook.
+</p>
+<p>
+@if(!string.IsNullOrEmpty(Model.Message))
+{
+    @Model.Message;
+}
+else
+{
+    @Model.Exception.Message;
+}
+</p>

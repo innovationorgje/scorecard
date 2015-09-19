@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using scorecard.Data;
+using scorecard.Models;
 
 namespace scorecard.Controllers
 {
@@ -10,21 +12,12 @@ namespace scorecard.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
+            RAGContext context = new RAGContext();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            HomeIndexViewModel model = new HomeIndexViewModel();
+            model.Groups = context.Groups.ToList();
+            
+            return View(model);
         }
     }
 }

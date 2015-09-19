@@ -1,31 +1,139 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using scorecard.Models
+@model HomeIndexViewModel
+@{
+    ViewBag.Title = "Jersey Innovation Review Status";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div id="top-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Jersey Innovation Review Status</h1>
+                <p>Innovation.org.je provides status of the recommendations of the <a href="http://www.gov.je/Government/Pages/StatesReports.aspx?ReportID=1616" target="_blank">2015 Jersey Innovation Review</a></p>
+                <p>This major independent review has been published to look at innovation in Jersey and the impact this has on the economy. Innovation is a key element of Jersey’s aim to improve productivity. The review was led by <a href="https://uk.linkedin.com/in/teraallas" target="_blank">Tera Allas</a>, a recognised expert in innovation policy.</p>
+                <p>This website uses the <a href="https://en.wikipedia.org/wiki/Traffic_light_rating_system#Traffic_Light_RAG_and_BRAG_.28or_RAGB.29_Milestone_Project.2C_Program_and_Portfolio_status_reporting" target="_blank">RAG (Red Amber Green)</a> system for monitoring the status of the progress on each of the recommendations.</p>
+                <div class="col-xs-12" style="margin-top:20px;">
+                    <div class="col-sm-2 box danger">Red</div>
+                    <div class="col-sm-10"><p>To achieve success the project team should take action immediately.</p></div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-sm-2 box warning">Amber</div>
+                    <div class="col-sm-10"><p>The project should go forward with actions on recommendations to be carried out before the next review of the project.</p></div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="col-sm-2 box success">Green</div>
+                    <div class="col-sm-10"><p>The project is on target to succeed but may benefit from the uptake of recommendations.</p></div>
+                </div>
+                <p>
+                    <br/>
+                    This website was designed by <a href="http://twitter.com/bearpig" target="_blank">@Html.Raw("@bearpig")</a> and built by <a href="http://twitter.com/mattcjsy">@Html.Raw("@mattcjsy")</a> as a community initiative.
+                </p>
+                <p>
+                    The code, warts and all, is open source and can be viewed on <a href="https://github.com/innovationorgje/scorecard" target="_blank">GitHub</a>.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="rec_intro" id="status">
+                <h2>Overview</h2>
+                <p>You can click on any of these numbers to jump to the detailed status of that recommendation.</p>
+                @foreach (var group in Model.Groups)
+                {
+                    foreach (var criteria in group.Criteria)
+                    {
+                        <a class="rec_square @criteria.CssClass" href="#rec-@criteria.ID">@criteria.Reference</a>
+                    }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                }
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="recommendations">
+                @foreach(var group in Model.Groups)
+                {
+                    <h2>@group.Title</h2>
+
+                    foreach (var criteria in group.Criteria)
+                    {
+                        <div class="panel panel-@criteria.CssClass" id="rec-@criteria.ID">
+                            <input type="hidden" class="current-status" value="@Convert.ToInt32(criteria.State)" />
+                            <div class="panel-heading">
+                                <h3 class="panel-title">@criteria.Reference - @criteria.Title</h3>
+                            </div>
+                            <div id="panel-body-@criteria.ID" class="panel-body">
+                                @criteria.Summary
+                                @{
+                        StatusUpdateViewModel m = new StatusUpdateViewModel(criteria.LatestUpdates);
+                                }
+                                @Html.Partial("_StatusUpdatePartial", m)
+                                <div id="panel-placeholder-@criteria.ID"></div>
+                            </div>
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                                <div class="panel-footer">
+                                    <div class="update">
+                                        <button id="upd-@criteria.ID" class="btn btn-primary btn-md update-criteria" type="button">Update</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
     </div>
 </div>
+@if(User.Identity.IsAuthenticated)
+{
+    <div class="panel-footer panel-footer-update">
+        @using(Ajax.BeginForm("UpdateStatus", "Criteria", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.InsertBefore,
+            UpdateTargetId = "DYNAMIC",
+            OnSuccess = "updateStatusSuccess",
+            OnFailure = "showAjaxFormError"
+        }))
+    {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.UpdateId)
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.LabelFor(m => m.UpdateText, new { @class = "control-label" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.TextAreaFor(m => m.UpdateText, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-10">
+                        @Html.ValidationMessageFor(m => m.UpdateText, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-2 col-md-1">
+                        @Html.LabelFor(m => m.UpdateStatus, new { @class = "control-label" })
+                    </div>
+                    <div class="col-xs-6 col-sm-4 col-md-3">
+                        @Html.EnumDropDownListFor(m => m.UpdateStatus, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="update">
+                    <button class="btn btn-primary btn-md submit-update" type="submit"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Submit</button>
+                    <button class="btn btn-default btn-md cancel-update" type="button">Cancel</button>
+                </div>
+            </div>
+    }
+    </div>
+}
