@@ -189,6 +189,7 @@
     <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageHandler.cs" />
     <Compile Include="Models\PermittedUser.cs" />
     <Compile Include="Models\StatusUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +245,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_StatusUpdatePartial.cshtml" />
     <Content Include="Views\Criteria\_StatusUpdateFailedPartial.cshtml" />
+    <Content Include="Views\Account\ApplicationSent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

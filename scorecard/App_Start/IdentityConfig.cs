@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using System.Net.Mail;
+using System.Configuration;
 using scorecard.Models;
 
 namespace scorecard
@@ -18,7 +20,6 @@ namespace scorecard
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
             return Task.FromResult(0);
         }
     }

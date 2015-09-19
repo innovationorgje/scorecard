@@ -55,6 +55,8 @@ namespace scorecard.Controllers
 
         //
         // GET: /Account/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -66,6 +68,16 @@ namespace scorecard.Controllers
             return RedirectToAction("ExternalLogin", "Account", new { provider="LinkedIn", returnUrl=returnUrl});
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Apply(ExternalLoginFailureViewModel model)
+        {
+            MessageHandler.SendEmailAsync("matt@code.je", "Application for access to innovation.org.je", string.Format("{0} has requested access.", model.EmailAddress));
+
+            return View("ApplicationSent");
+        }
+                
         //
         // GET: /Account/ExternalLogin
         [HttpGet]
@@ -138,7 +150,8 @@ namespace scorecard.Controllers
                         }
                     }
 
-                    return View("ExternalLoginFailure");
+                    ExternalLoginFailureViewModel model = new ExternalLoginFailureViewModel(email);
+                    return View("ExternalLoginFailure", model);
             }
         }
 
