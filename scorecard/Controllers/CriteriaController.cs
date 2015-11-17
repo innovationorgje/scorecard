@@ -48,6 +48,7 @@ namespace scorecard.Controllers
                                 state.Criteria = criteria;
                                 state.StateFrom = criteria.State;
                                 state.StateTo = model.UpdateStatus;
+                                state.UpdateType = model.UpdateType;
                                 state.User = currentUser;
                                 state.Stamp = DateTime.Now;
                                 criteria.Updates.Add(state);
@@ -62,6 +63,7 @@ namespace scorecard.Controllers
                             update.Criteria = criteria;
                             update.StateFrom = model.UpdateStatus;
                             update.StateTo = model.UpdateStatus;
+                            update.UpdateType = model.UpdateType;
                             update.Text = model.UpdateText;
                             update.User = currentUser;
                             update.Stamp = DateTime.Now;

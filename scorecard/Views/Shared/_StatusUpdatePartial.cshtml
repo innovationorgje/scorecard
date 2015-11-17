@@ -5,6 +5,10 @@
     <hr />
     <input type="hidden" id="criteria-state-@update.Criteria.ID" class="criteria-state" value="@update.CssClass" />
     <p>
+        @if(update.UpdateType != UpdateType.Update)
+        {
+            <span class="label label-info">@update.UpdateType.ToString()</span>
+        }
         @if (update.IsStateChange)
         {
             @Html.Raw(string.Format("State changed from <span class=\"update update-{2}\">{0}</span> to <span class=\"update update-{3}\">{1}</span>", update.StateFrom.ToString(), update.StateTo.ToString(), update.StateFrom.ToString().ToLower(), update.StateTo.ToString().ToLower()));

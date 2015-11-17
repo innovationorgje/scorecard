@@ -9,6 +9,7 @@ namespace scorecard.Models
         public string Text { get; set; }
         public CriteriaState StateFrom { get; set; }
         public CriteriaState StateTo { get; set; }
+        public UpdateType UpdateType { get; set; }
         public DateTime Stamp { get; set; }
 
         public virtual Criteria Criteria { get; set; }

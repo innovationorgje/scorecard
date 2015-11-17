@@ -48,7 +48,7 @@ namespace scorecard.Data
 
             var permitted = new List<PermittedUser>
             {
-//                new PermittedUser{Email="matt.chatterley@gmail.com",Roles="Administrator"},
+                new PermittedUser{Email="matt.chatterley@gmail.com",Roles="Administrator"},
                 new PermittedUser{Email="robbie@beobserved.com",Roles="Administrator"},
                 new PermittedUser{Email="john@smith.com", Roles=string.Empty}
             };
@@ -69,10 +69,10 @@ namespace scorecard.Data
 
             var statuses = new List<StatusUpdate>
             {
-                new StatusUpdate{Text="Test Update 1",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Red,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
-                new StatusUpdate{Text="",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Amber,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
-                new StatusUpdate{Text="Test Update 2",StateFrom=CriteriaState.Amber,StateTo=CriteriaState.Amber,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
-                new StatusUpdate{Text="",StateFrom=CriteriaState.Amber,StateTo=CriteriaState.Red,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]}
+                new StatusUpdate{Text="Test Update 1",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Red,UpdateType=UpdateType.Update,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
+                new StatusUpdate{Text="",StateFrom=CriteriaState.Red,StateTo=CriteriaState.Amber,UpdateType=UpdateType.Update,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
+                new StatusUpdate{Text="Test Update 2",StateFrom=CriteriaState.Amber,UpdateType=UpdateType.Partners,StateTo=CriteriaState.Amber,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]},
+                new StatusUpdate{Text="",StateFrom=CriteriaState.Amber,StateTo=CriteriaState.Red,UpdateType=UpdateType.Update,Stamp=DateTime.Now,Criteria=criteria[0],User=users[0]}
             };
 
             statuses.ForEach(s => context.StatusUpdates.Add(s));
