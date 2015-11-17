@@ -43,3 +43,5 @@ textarea.form-control {
 	color:white;
 	margin-right:5px;
 }
+
+.recommendations .panel p span .label { color:white; }
