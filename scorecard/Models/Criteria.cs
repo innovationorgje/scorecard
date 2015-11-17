@@ -11,6 +11,15 @@ namespace scorecard.Models
         Green = 2
     }
 
+    public enum UpdateType
+    {
+        Update = 0,
+        Department = 1,
+        Partners = 2,
+        Timeline = 3,
+        Action = 4
+    }
+
     public class Criteria
     {
         public int ID { get; set; }

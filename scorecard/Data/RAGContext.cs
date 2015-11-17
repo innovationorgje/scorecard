@@ -18,10 +18,6 @@ namespace scorecard.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //modelBuilder.Entity<PermittedUser>().ToTable("PermittedUser");
-            //modelBuilder.Entity<PermittedUser>().MapSingleType().ToTable("PermittedUser");
-
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -19,6 +19,9 @@ namespace scorecard.Models
         [Display(Name = "Status")]
         public CriteriaState UpdateStatus { get; set; }
 
+        [Display(Name = "Type")]
+        public UpdateType UpdateType { get; set; }
+
         [Required]
         public int UpdateId { get; set; }
     }
