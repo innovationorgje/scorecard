@@ -11,7 +11,6 @@ namespace scorecard.Models
         public List<Group> Groups { get; set; }
 
         [Required]
-        [StringLength(250, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 10)]
         [DataType(DataType.Text)]
         [Display(Name = "Update Message")]
         public string UpdateText { get; set; }
